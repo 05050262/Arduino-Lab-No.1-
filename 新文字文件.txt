@@ -1,0 +1,39 @@
+const byte hi[]={16,15,14,13,12,11,10,9};
+const int c1=2;
+boolean s1;
+int i;
+int delaytime=2000;
+void setup() {
+  for(i=0;i<8;i++)
+  {
+    pinMode(hi[i],OUTPUT);
+    digitalWrite(hi[i],LOW);
+  }
+  pinMode(c1,INPUT);
+}
+
+void loop() {
+  s1=digitalRead(c1);
+  if(s1==HIGH){
+    delay(20);
+    while(1)
+    {
+      s1=digitalRead(c1);
+      if(s1==LOW)
+      break;
+    }
+    delay(20);
+    for(i=0;i<8;i=i+2){
+      digitalWrite(hi[i],HIGH);
+      delay(delaytime);
+    }
+     for(i=1;i<8;i=i+2){
+      digitalWrite(hi[i],HIGH);
+      delay(delaytime);
+    }
+    delay(1000);
+    for(i=0;i<8;i++){
+      digitalWrite(hi[i],LOW);
+    }
+  }
+}
